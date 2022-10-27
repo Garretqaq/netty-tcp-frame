@@ -12,6 +12,7 @@
   <modules>
     <module>sever</module>
     <module>client</module>
+    <module>public</module>
   </modules>
 
   <packaging>pom</packaging>

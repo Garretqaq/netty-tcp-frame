@@ -9,7 +9,6 @@ import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 import lombok.extern.slf4j.Slf4j;
 
-import java.net.InetAddress;
 
 /**
  * 基于netty的客户端
@@ -49,7 +48,7 @@ public class NettyClient {
 
             @Override
             protected void initChannel(SocketChannel ch) {
-                ch.pipeline().addLast("encode",new StringEncoder());
+                ch.pipeline().addLast("encode", new ProtocolDecoder());
                 ch.pipeline().addLast("decode",new StringDecoder());
             }
         });
