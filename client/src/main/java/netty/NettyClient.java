@@ -5,8 +5,6 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.handler.codec.string.StringDecoder;
-import io.netty.handler.codec.string.StringEncoder;
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -49,7 +47,7 @@ public class NettyClient {
             @Override
             protected void initChannel(SocketChannel ch) {
                 ch.pipeline().addLast("encode", new ProtocolDecoder());
-                ch.pipeline().addLast("decode",new StringDecoder());
+                ch.pipeline().addLast("decode",new ProtocolEncoder());
             }
         });
         bootstrap.channel(NioSocketChannel.class);
