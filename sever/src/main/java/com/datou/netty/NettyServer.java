@@ -1,12 +1,13 @@
-package netty;
+package com.datou.netty;
 
+import com.datou.handle.HeartbeatHandle;
+import com.datou.handle.ProtocolDecoder;
+import com.datou.handle.ProtocolEncoder;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import io.netty.handler.codec.string.StringDecoder;
-import io.netty.handler.codec.string.StringEncoder;
 import io.netty.handler.timeout.IdleStateHandler;
 import lombok.extern.slf4j.Slf4j;
 
@@ -41,12 +42,14 @@ public class NettyServer {
                     @Override
                     protected void initChannel(SocketChannel ch) throws Exception {
                         ChannelPipeline pipeline = ch.pipeline();
-                        pipeline.addLast(new StringEncoder());
-                        pipeline.addLast(new StringDecoder());
-                        pipeline.addLast( new IdleStateHandler(6, 0, 0));
+                        pipeline.addLast(new ProtocolDecoder());
+                        pipeline.addLast(new ProtocolEncoder());
+                        // 实现心跳检测
+                        pipeline.addLast( new IdleStateHandler(6, 6, 6));
+                        pipeline.addLast(new HeartbeatHandle());
                     }
-                }).option(ChannelOption.SO_BACKLOG, 128)
-                .childOption(ChannelOption.SO_KEEPALIVE, true);
+                }).option(ChannelOption.SO_BACKLOG, 128) // 当连接不过来加入阻塞队列
+                .childOption(ChannelOption.SO_KEEPALIVE, true); // 检查连接
     }
 
     /**
