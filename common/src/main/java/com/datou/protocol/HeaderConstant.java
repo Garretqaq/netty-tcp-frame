@@ -1,6 +1,4 @@
-package protocol;
-
-import cn.hutool.core.util.CharsetUtil;
+package com.datou.protocol;
 
 import java.nio.charset.StandardCharsets;
 
@@ -8,7 +6,7 @@ import java.nio.charset.StandardCharsets;
 /**
  * 协议常用常量
  * @author sgz
- * @since 1.0.0 2022/10/16
+ * @since 1.0.0 2022/10/26
  */
 public class HeaderConstant {
     /**

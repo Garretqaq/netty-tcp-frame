@@ -1,4 +1,4 @@
-package serialization.json;
+package com.datou.serializer;
 
 import com.alibaba.fastjson.JSONObject;
 
@@ -6,7 +6,7 @@ import com.alibaba.fastjson.JSONObject;
  * 使用fastJson序列化对象,方便解读
  * 若传输数据包多可采用Protobuf序列
  * @author sgz
- * @since 1.0.0 2022/10/16
+ * @since 1.0.0 2022/10/26
  */
 public class JsonSerializer {
     /**

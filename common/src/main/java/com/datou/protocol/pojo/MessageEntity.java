@@ -1,4 +1,4 @@
-package protocol.pojo;
+package com.datou.protocol.pojo;
 
 import io.netty.channel.Channel;
 import lombok.Getter;

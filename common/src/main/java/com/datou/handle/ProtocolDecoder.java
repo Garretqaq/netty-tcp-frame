@@ -1,11 +1,11 @@
-package netty;
+package com.datou.handle;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.ByteToMessageDecoder;
 import lombok.extern.slf4j.Slf4j;
-import protocol.HeaderConstant;
-import protocol.pojo.MessageEntity;
+import com.datou.protocol.HeaderConstant;
+import com.datou.protocol.pojo.MessageEntity;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
@@ -21,7 +21,7 @@ import java.util.List;
  *       2           1           1           1            4               body
  * |__ __ __ __|__ __ __ __|__ __ __ __|__ __ __ __|__ __ __ __ __|__ __ __ __ __ __ __ __ __|
  * |           |           |           |           |              |                          |
- *     Magic        Sign        Type       Status     Body Length         Body Content
+ *   Magic(TO)      Sign        Type       Status     Body Length         Body Content
  * |__ __ __ __|__ __ __ __|__ __ __ __|__ __ __ __|__ __ __ __ __|__ __ __ __ __ __ __ __ __|
  *
  * 协议头9个字节定长

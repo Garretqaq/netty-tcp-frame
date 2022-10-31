@@ -1,4 +1,4 @@
-package protocol;
+package com.datou.protocol;
 
 /**
  * 传输层协议头.
@@ -9,7 +9,7 @@ package protocol;
  *       2           1           1           1            4               body
  * |__ __ __ __|__ __ __ __|__ __ __ __|__ __ __ __|__ __ __ __ __|__ __ __ __ __ __ __ __ __|
  * |           |           |           |           |              |                          |
- *     Magic        Sign        Type       Status     Body Length         Body Content
+ *   Magic(TO)      Sign        Type       Status     Body Length         Body Content
  * |__ __ __ __|__ __ __ __|__ __ __ __|__ __ __ __|__ __ __ __ __|__ __ __ __ __ __ __ __ __|
  *
  * 协议头9个字节定长
@@ -20,7 +20,7 @@ package protocol;
  *     BodyLength // 协议体长度，int类型
  *
  *  @author sgz
- *  @since 1.0.0 2022/10/16
+ *  @since 1.0.0 2022/10/26
  */
 public enum HeaderEnum {
     /** sign: 0x01 ~ 0x03 =========================================================================================== */
