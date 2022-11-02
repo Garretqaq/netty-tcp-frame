@@ -5,8 +5,8 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <artifactId>netty-tcp-frame</artifactId>
     <groupId>com.datou</groupId>
+    <artifactId>netty-tcp-frame</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
 
@@ -15,8 +15,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.target>1.8</maven.compiler.target>
-    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+    <maven.compiler.source>11</maven.compiler.source>
     <junit.version>5.8.2</junit.version>
   </properties>
 
