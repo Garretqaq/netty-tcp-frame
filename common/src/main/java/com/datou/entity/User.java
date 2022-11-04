@@ -18,7 +18,7 @@ public class User {
      * id
      */
     @TableId
-    private Integer id;
+    private Integer userId;
     /**
      * 用户名
      */
@@ -27,6 +27,10 @@ public class User {
      * 密码
      */
     private String password;
+    /**
+     * 年龄
+     */
+    private Integer age;
     /**
      * 手机号
      */
