@@ -2,9 +2,11 @@ package com.datou.sources;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.URLUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.mybatis.spring.SqlSessionTemplate;
 
 import java.io.InputStream;
 import java.net.URL;
@@ -14,6 +16,7 @@ import java.net.URL;
  * @author sgz
  * @since 1.0.0 2022/10/26
  */
+@Slf4j
 public class MySqlSourcesFactory {
     /**
      * session工程
@@ -21,9 +24,9 @@ public class MySqlSourcesFactory {
     static SqlSessionFactory sqlSessionFactory;
 
     /**
-     * sqlSession对象
+     * SqlSessionTemplate对象
      */
-    static SqlSession sqlSession;
+    static SqlSessionTemplate sqlSession;
 
     static {
         // 定义配置文件，相对路径，文件直接放在resources目录下
@@ -40,6 +43,7 @@ public class MySqlSourcesFactory {
         // 将xml文件解析成一个 org.apache.ibatis.session.Configuration 对象
         // 然后将 Configuration 对象交给 SqlSessionFactory 接口实现类 DefaultSqlSessionFactory 管理
         sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+        sqlSession = new SqlSessionTemplate(sqlSessionFactory);
     }
 
 
@@ -48,14 +52,14 @@ public class MySqlSourcesFactory {
      * @return sqlSession
      */
     public static SqlSession getSqlSession(){
-        // openSession 有多个重载方法， 比较重要几个是
-        // 1 是否默认提交 SqlSession openSession(boolean autoCommit)
-        // 2 设置事务级别 SqlSession openSession(TransactionIsolationLevel level)
-        // 3 执行器类型   SqlSession openSession(ExecutorType execType)
-        // 不启用事务改用自动提交
-        if (sqlSession == null){
-            sqlSession = sqlSessionFactory.openSession(true);
-        }
+//        // openSession 有多个重载方法， 比较重要几个是
+//        // 1 是否默认提交 SqlSession openSession(boolean autoCommit)
+//        // 2 设置事务级别 SqlSession openSession(TransactionIsolationLevel level)
+//        // 3 执行器类型   SqlSession openSession(ExecutorType execType)
+//        // 不启用事务改用自动提交
+//        if (sqlSession == null){
+//            sqlSession = sqlSessionFactory.openSession(true);
+//        }
         return sqlSession;
     }
 
