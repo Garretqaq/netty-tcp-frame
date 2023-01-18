@@ -1,5 +1,6 @@
 package com.datou.netty;
 
+import com.datou.handle.AcceptorHandler;
 import com.datou.handle.HeartbeatHandle;
 import com.datou.handle.ProtocolDecoder;
 import com.datou.handle.ProtocolEncoder;
@@ -46,6 +47,7 @@ public class NettyServer {
                         pipeline.addLast(new ProtocolEncoder());
                         // 实现心跳检测
                         pipeline.addLast( new IdleStateHandler(6, 6, 6));
+                        pipeline.addLast(new AcceptorHandler());
                         pipeline.addLast(new HeartbeatHandle());
                     }
                 }).option(ChannelOption.SO_BACKLOG, 128) // 当连接不过来加入阻塞队列

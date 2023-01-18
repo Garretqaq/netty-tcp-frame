@@ -1,7 +1,6 @@
 package com.datou.handle;
 
 import com.datou.context.MessageContext;
-import com.datou.protocol.HeaderConstant;
 import com.datou.protocol.HeaderEnum;
 import com.datou.protocol.pojo.MessageEntity;
 import io.netty.channel.Channel;

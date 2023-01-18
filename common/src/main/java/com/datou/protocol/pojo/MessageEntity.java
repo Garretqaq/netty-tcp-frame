@@ -20,6 +20,7 @@ public class MessageEntity {
      */
     private byte status;
     /**
+     * @see UserMessage
      * Json消息体
      */
     private String body;

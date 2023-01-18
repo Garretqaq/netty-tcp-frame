@@ -6,9 +6,12 @@ import cn.hutool.crypto.SecureUtil;
 import cn.hutool.jwt.JWT;
 import cn.hutool.jwt.JWTPayload;
 import cn.hutool.jwt.JWTUtil;
+import com.datou.dto.UserDTO;
+import com.datou.entity.User;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.HashMap;
+import java.util.Map;
 
 @Slf4j
 public class JwtUtils {
@@ -22,7 +25,7 @@ public class JwtUtils {
      * @param userId 用户id
      * @return token
      */
-    public static String createToken(String userId){
+    public static String createToken(String userId, String md5Password){
         /*
           hutool的时间工具包
           now 定义为jwt的签发时间 生效时间
@@ -39,6 +42,7 @@ public class JwtUtils {
         map.put(JWTPayload.NOT_BEFORE, now);
         // 载荷 放了一个用户id ，角色权限  用户密码
         map.put("userId", userId);
+        map.put("password", md5Password);
         map.put("role", 0);
         String md5 = SecureUtil.md5(SALT);//hutool工具包的MD5加密 也可以使用spring家的md5
         map.put("md5", md5);
@@ -57,10 +61,16 @@ public class JwtUtils {
     /**
      * 解析token
      * @param token token
-     * @return 用户id
+     * @return 用户名-密码
      */
-    public static String parseToken(String token){
+    public static UserDTO parseToken(String token){
+        UserDTO user = new UserDTO();
         JWT jwt = JWTUtil.parseToken(token);
-        return (String) jwt.getPayload("userId");
+        String userId = jwt.getPayload("userId").toString();
+        String password = jwt.getPayload("password").toString();
+
+        user.setUserId(userId);
+        user.setPassword(password);
+        return user;
     }
 }
